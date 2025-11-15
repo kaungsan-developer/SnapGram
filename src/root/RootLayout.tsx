@@ -3,6 +3,7 @@ import { useAccountLogout } from "@/hooks/queryAndMutations/auth";
 import { Button } from "@/components/ui/button";
 const RootLayout = () => {
   const { mutate: logout, isPending } = useAccountLogout();
+
   return (
     <div>
       <Button

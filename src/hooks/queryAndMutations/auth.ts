@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import {
   accountLogin,
   accountLogout,
@@ -6,6 +6,7 @@ import {
 } from "@/lib/appwrite/api";
 import { toast } from "sonner";
 import { useNavigate } from "react-router";
+import { useAuthContext } from "@/context/AuthContext";
 
 export function useCreateNewAccount() {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ export function useCreateNewAccount() {
       createNewAccount(data),
     onSuccess: () => {
       toast.success("Account created successfully!");
-      navigate("/");
+      navigate("/auth/sign-in");
     },
     onError: (error) => {
       console.log(error.message);
@@ -25,11 +26,13 @@ export function useCreateNewAccount() {
 
 export function useAccountLogin() {
   const navigate = useNavigate();
+  const { setIsAuthenticated } = useAuthContext();
   return useMutation({
     mutationFn: (data: { email: string; password: string }) =>
       accountLogin(data),
     onSuccess: () => {
       toast.success("Logged in successfully!");
+      setIsAuthenticated(true);
       navigate("/");
     },
     onError: (error) => {
@@ -41,10 +44,13 @@ export function useAccountLogin() {
 
 export function useAccountLogout() {
   const navigate = useNavigate();
+  const { setIsAuthenticated } = useAuthContext();
+
   return useMutation({
     mutationFn: () => accountLogout(),
     onSuccess: () => {
       toast.success("Logged out successfully!");
+      setIsAuthenticated(false);
       navigate("/auth/sign-in");
     },
     onError: (error) => {

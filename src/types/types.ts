@@ -29,3 +29,19 @@ export type NewAccountResponse = {
   email: string;
   name: string;
 };
+
+export type INIT_USER_TYPE = {
+  $id: string;
+  name: string;
+  email: string;
+  imageURL: string;
+  bio: string;
+};
+
+export type AuthContextType = {
+  user: INIT_USER_TYPE;
+  setUser: React.Dispatch<React.SetStateAction<INIT_USER_TYPE>>;
+  isLoading: boolean;
+  isAuthenticated: boolean;
+  setIsAuthenticated: React.Dispatch<React.SetStateAction<boolean>>;
+};
