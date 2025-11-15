@@ -6,8 +6,6 @@ const HomePage = () => {
   return (
     <div>
       <h1>Welcome to SnapGram!</h1>
-      <Button onClick={() => navigate("/auth/sign-in")}>sign in</Button>
-      <Button onClick={() => navigate("/auth/sign-up")}>sign up</Button>
     </div>
   );
 };

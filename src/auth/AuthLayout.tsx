@@ -1,4 +1,5 @@
 import { Outlet, Link } from "react-router";
+import { ModeToggle } from "@/components/mode-toggle";
 const AuthLayout = () => {
   return (
     <div>
@@ -7,6 +8,7 @@ const AuthLayout = () => {
         <div className="flex  gap-4 items-center">
           <Link to="/auth/sign-in">Sign In</Link>
           <Link to="/auth/sign-up">Sign Up</Link>
+          <ModeToggle />
         </div>
       </div>
 
